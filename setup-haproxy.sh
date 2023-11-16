@@ -21,7 +21,7 @@ echo "##########################################################################
 echo "[Script] Install Certbot, pip3 and Cloudflare for Certbot"
 apt update
 apt install certbot python3-pip -y
-pip3 install certbot-dns-cloudflare
+/usr/bin/python3.7 -m pip install certbot-dns-cloudflare
 
 echo "############################################################################"
 echo "[Script] Install wget, vim, haproxy, rsync"
