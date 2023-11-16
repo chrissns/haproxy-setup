@@ -21,6 +21,5 @@ echo "[Online Installer] Repository cloned."
 
 echo "[Oneline Installer] Running installation process..."
 cd /tmp/proxyssl
-clear
 bash ./install.sh
 echo "[Oneline Installer] Installation process completed."
