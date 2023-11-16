@@ -21,5 +21,5 @@ echo "[Online Installer] Repository cloned."
 
 echo "[Oneline Installer] Running installation process..."
 cd /tmp/haproxy-setup
-bash /tmp/haproxy-setup/install.sh
+bash /tmp/haproxy-setup/setup-haproxy.sh
 echo "[Oneline Installer] Installation process completed."
