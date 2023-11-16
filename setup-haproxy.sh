@@ -10,62 +10,62 @@ echo ""
 echo ""
 
 echo "############################################################################"
-echo "[Script] Update apt"
+echo "Update apt"
 sudo apt update && sudo apt upgrade -y
 
 echo "############################################################################"
-echo "[Script] Install cron"
+echo "Install cron"
 apt install cron -y
 
 echo "############################################################################"
-echo "[Script] Install Certbot, pip3 and Cloudflare for Certbot"
+echo "Install Certbot, pip3 and Cloudflare for Certbot"
 apt update
 apt install certbot python3-pip -y
 /usr/bin/python3.7 -m pip install certbot-dns-cloudflare
 
 echo "############################################################################"
-echo "[Script] Install wget, vim, haproxy, rsync"
+echo "Install wget, vim, haproxy, rsync"
 sudo apt -y install wget vim haproxy rsync
 
 echo "############################################################################"
-echo "[Script] Install nvm"
+echo "Install nvm"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
 echo "############################################################################"
-echo "[Script] Reloading bash"
+echo "Reloading bash"
 source ~/.bashrc
 
 echo "############################################################################"
-echo "[Script] Reloading nvm"
+echo "Reloading nvm"
 source ~/.nvm/nvm.sh
 
 echo "############################################################################"
-echo "[Script] Setting up nvm"
+echo "Setting up nvm"
 nvm install --lts
 
 echo "############################################################################"
-echo "[Script] Install pm2"
+echo "Install pm2"
 npm i -g pm2
 
 echo "############################################################################"
-echo "[Script] Install yarn"
+echo "Install yarn"
 npm i -g yarn
 
 echo "############################################################################"
-echo "[Script] Reloading bash"
+echo "Reloading bash"
 source ~/.bashrc
 
 pm2path=$(command -v pm2)
 echo "pm2 path is ${pm2path}"
 
 echo "############################################################################"
-echo "[Script] Removing old config files"
+echo "Removing old config files"
 sudo rm /etc/letsencrypt/cli.ini
 sudo rm /etc/cron.d/certbot
 sudo rm /etc/haproxy/haproxy.cfg
 
 echo "############################################################################"
-echo "[Script] Creating config directories"
+echo "Creating config directories"
 sudo mkdir -p /etc/letsencrypt/
 sudo mkdir -p /etc/letsencrypt/live
 sudo mkdir -p /etc/ssl/haproxycert/
@@ -73,7 +73,7 @@ sudo mkdir -p /etc/haproxy/
 sudo mkdir -p /opt/.secrets/certbot/
 
 echo "############################################################################"
-echo "[Script] Creating config files"
+echo "Creating config files"
 sudo touch /opt/.secrets/certbot/cloudflare.ini
 chown -R $USER /opt/.secrets/
 chmod 600 /opt/.secrets/certbot/cloudflare.ini
@@ -91,35 +91,36 @@ touch /etc/haproxy/errors/503.http
 touch /etc/haproxy/errors/504.http
 
 echo "############################################################################"
-echo "[Script] Install mustache"
+echo "Install mustache"
 curl -sSL https://git.io/get-mo -o mo
 . "./mo"
-echo "[Script] Mustache was installed successfully" | mo
+echo "Mustache was installed successfully" | mo
 
+echo "Before you continue check for errors above!"
 read -p "Press [Enter] key to continue..."
 
 echo "############################################################################"
 clear
-echo "[Script] Now enter your configuration."
+echo "Now enter your configuration."
 
 read -p 'Which email do you want to use for ssl certificates? > ' certbotMail
 read -p 'Which domains should be configured? (seperated by spaces) > ' domains
 
 echo ""
 
-echo "[Script] Your certbot mail address: ${certbotMail}"
-echo "[Script] Your domains: ${domains}"
+echo "Your certbot mail address: ${certbotMail}"
+echo "Your domains: ${domains}"
 
 echo "############################################################################"
 clear
-echo "[Script] Setting up Cloudflare Certbot..."
-echo "[Script] Please create a restricted token with the \"Zone:DNS:Edit\" permissions"
+echo "Setting up Cloudflare Certbot..."
+echo "Please create a restricted token with the \"Zone:DNS:Edit\" permissions"
 read -p 'Enter your cloudflare token > ' cloudflareToken
 echo "Token will be saved to ~/.secrets/certbot/cloudflare.ini"
 echo "dns_cloudflare_api_token = ${cloudflareToken}" > /opt/.secrets/certbot/cloudflare.ini
 
 echo "############################################################################"
-echo "[Script] Registering following domains:"
+echo "Registering following domains:"
 domainsArr=($domains)
 mainDomain=${domainsArr[0]}
 cetrbotCmd="sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials /opt/.secrets/certbot/cloudflare.ini --dns-cloudflare-propagation-seconds 30 --email ${certbotMail} --agree-tos"
@@ -133,22 +134,22 @@ mkdir -p /etc/letsencrypt/live/${mainDomain}/
 echo "export CERTS_DIR=\"/etc/letsencrypt/live/${mainDomain}/\"" >> ~/.bashrc
 
 echo "############################################################################"
-echo "[Script] Creating post renew hook"
+echo "Creating post renew hook"
 sudo touch /opt/post-renew.sh
 sudo chown $USER /opt/post-renew.sh
 sudo cat ./scripts/post-renew.sh | mo > /opt/post-renew.sh
 
 echo "############################################################################"
-echo "[Script] Configuring certbot"
-echo "[Script] Setting up with main domain ${mainDomain}"
+echo "Configuring certbot"
+echo "Setting up with main domain ${mainDomain}"
 $certbotCmd
 
 echo "############################################################################"
-echo "[Script] Reloading HAProxy"
+echo "Reloading HAProxy"
 systemctl restart haproxy
 
 echo "############################################################################"
-echo "[Script] To make sure all your backends are getting started on boot please follow those steps:"
+echo "To make sure all your backends are getting started on boot please follow those steps:"
 pm2 startup
 
 echo "############################################################################"
