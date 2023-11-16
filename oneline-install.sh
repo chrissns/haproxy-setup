@@ -17,7 +17,7 @@ fi
 
 echo "[Oneline Installer] Cloning repository..."
 git clone https://github.com/chrissns/haproxy-setup.git /tmp/haproxy-setup/
-echo "[Online Installer] Repository cloned."
+echo "[Oneline Installer] Repository cloned."
 
 echo "[Oneline Installer] Running installation process..."
 cd /tmp/haproxy-setup
