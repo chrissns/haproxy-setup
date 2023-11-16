@@ -4,7 +4,7 @@ echo "[Oneline Installer] Using simple oneline setup process."
 
 cd /tmp/
 echo "[Oneline Installer] Checking if an old version of the installer is cached."
-sudo rm -rf /tmp/proxyssl/
+sudo rm -rf /tmp/haproxy-setup/
 
 echo "[Oneline Installer] Checking git installation."
 if ! command -v git &> /dev/null
