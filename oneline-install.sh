@@ -1,27 +1,25 @@
 #!/usr/bin/env bash
 
-GREEN="\033[0;32m"
-
-echo "${GREEN}[Oneline Installer] Using simple oneline setup process."
+echo "[Oneline Installer] Using simple oneline setup process."
 
 cd /tmp/
-echo "${GREEN}[Oneline Installer] Checking if an old version of the installer is cached."
+echo "[Oneline Installer] Checking if an old version of the installer is cached."
 sudo rm -rf /tmp/haproxy-setup/
 
-echo "${GREEN}[Oneline Installer] Checking git installation."
+echo "[Oneline Installer] Checking git installation."
 if ! command -v git &> /dev/null
 then
-    echo "${GREEN}[Oneline Installer] Git not found, installing..."
+    echo "[Oneline Installer] Git not found, installing..."
     sudo apt install git -y
 else
-    echo "${GREEN}[Oneline Installer] Git found."
+    echo "[Oneline Installer] Git found."
 fi
 
-echo "${GREEN}[Oneline Installer] Cloning repository..."
+echo "[Oneline Installer] Cloning repository..."
 git clone https://github.com/chrissns/haproxy-setup.git /tmp/haproxy-setup/
-echo "${GREEN}[Oneline Installer] Repository cloned."
+echo "[Oneline Installer] Repository cloned."
 
-echo "${GREEN}[Oneline Installer] Running installation process..."
+echo "[Oneline Installer] Running installation process..."
 cd /tmp/haproxy-setup
 bash /tmp/haproxy-setup/setup-haproxy.sh
-echo "${GREEN}[Oneline Installer] Installation process completed."
+echo "[Oneline Installer] Installation process completed."
