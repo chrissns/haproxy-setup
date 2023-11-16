@@ -16,7 +16,7 @@ else
 fi
 
 echo "[Oneline Installer] Cloning repository..."
-git clone https://github.com/itmr-dev/proxyssl.git /tmp/proxyssl/
+git clone https://github.com/chrissns/haproxy-setup.git /tmp/proxyssl/
 echo "[Online Installer] Repository cloned."
 
 echo "[Oneline Installer] Running installation process..."
