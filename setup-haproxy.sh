@@ -62,6 +62,7 @@ sudo cp ./configs/certbot /etc/cron.d/
 sudo cp ./configs/cli.ini /etc/letsencrypt/
 sudo cp ./configs/haproxy.cfg /etc/haproxy/
 
+mkdir /etc/haproxy/errors
 touch /etc/haproxy/errors/400.http
 touch /etc/haproxy/errors/403.http
 touch /etc/haproxy/errors/408.http
