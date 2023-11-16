@@ -1,5 +1,4 @@
-echo "############################################################################"
-echo ""
+clear
 echo "Before you continue, gather all important information."
 echo " -> Your E-Mail"
 echo " -> Your Domain names"
@@ -110,6 +109,7 @@ echo "[Script] Your certbot mail address: ${certbotMail}"
 echo "[Script] Your domains: ${domains}"
 
 echo "############################################################################"
+clear
 echo "[Script] Setting up Cloudflare Certbot..."
 echo "[Script] Please create a restricted token with the \"Zone:DNS:Edit\" permissions"
 read -p 'Enter your cloudflare token > ' cloudflareToken
