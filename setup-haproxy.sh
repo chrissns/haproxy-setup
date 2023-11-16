@@ -96,6 +96,8 @@ curl -sSL https://git.io/get-mo -o mo
 . "./mo"
 echo "[Script] Mustache was installed successfully" | mo
 
+read -p "Press [Enter] key to continue..."
+
 echo "############################################################################"
 clear
 echo "[Script] Now enter your configuration."
