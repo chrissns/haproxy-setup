@@ -140,7 +140,7 @@ echo "##########################################################################
 echo "Registering following domains:"
 domainsArr=($domains)
 mainDomain=${domainsArr[0]}
-cetrbotCmd="sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials /opt/.secrets/certbot/cloudflare.ini --dns-cloudflare-propagation-seconds 30 --email ${certbotMail} --agree-tos"
+certbotCmd="sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials /opt/.secrets/certbot/cloudflare.ini --dns-cloudflare-propagation-seconds 30 --email ${certbotMail} --agree-tos"
 for x in "${domainsArr[@]}"
 do
     echo "$x"
