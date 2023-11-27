@@ -8,4 +8,4 @@ Run this command on your server.
 Inspired by the [setup script](https://github.com/itmr-dev/proxyssl) from [Marc Rufeis](https://github.com/craftycram).
 
 ## Common problems
-Check that you use the correct version of Python.
+Check that you use the correct version of Python (>=3.11).
